@@ -1,15 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import './App.css';
 import Gameboard from './components/Gameboard';
+import GameOver from './components/GameOver';
 import Keyboard from './components/Keyboard';
 import { gameboardInitial } from './Data';
+import { generateWordSet  } from './Data';
 
 export const AppContext = createContext();
 
 const App = () => {
   const [gameboard, setGameboard] = useState(gameboardInitial);
   const [currentAttempt, setCurrentAttempt] = useState({attempt: 0, letterPosition: 0})
-  const correctWord = "WATER";
+  const [wordSet, setWordSet] = useState(new Set())
+  const [wrongLetters, setWrongLetters] = useState([]);
+  const [closeLetters, setCloseLetters] = useState([]);
+  const [correctLetters, setCorrectLetters] = useState([])
+  const [gameOver, setGameOver] = useState({gameOver: false, win: false})
+  const [correctWord, setCorrectWord] = useState("")
 
   const addLetter = (keyValue) => {
     if(currentAttempt.letterPosition > 4 ) return;
@@ -30,9 +37,33 @@ const App = () => {
   
   const enter = () => {
     if(currentAttempt.letterPosition <= 4) return;
-    setCurrentAttempt({attempt: currentAttempt.attempt + 1, letterPosition: 0})
+    let currentWord = "";
+    for (let i = 0; i < 5; i++){
+      currentWord += gameboard[currentAttempt.attempt][i]
+    }
+
+    if(wordSet.has(currentWord.toLowerCase())){
+      setCurrentAttempt({attempt: currentAttempt.attempt + 1, letterPosition: 0});
+    }else{
+      alert("Word not found in words database")
+    }
+
+    if(currentWord.toLowerCase() === correctWord){
+      setGameOver({gameOver: true, win: true});
+      return;
+    }
+
+    if(currentAttempt.attempt === 5){
+      setGameOver({gameOver: true, win: false});
+    }
   }
   
+  useEffect(() => {
+    generateWordSet().then((words) => {
+      setWordSet(words.wordSet)
+      setCorrectWord(words.todayWord)
+    })
+  }, [])
   
 
   return (
@@ -40,10 +71,10 @@ const App = () => {
       <nav>
         <h1>Wordle</h1>
       </nav>
-      <AppContext.Provider value={{ gameboard, setGameboard, currentAttempt, setCurrentAttempt, addLetter, deleteLetter, enter, correctWord }}>
+      <AppContext.Provider value={{ gameboard, setGameboard, currentAttempt, setCurrentAttempt, addLetter, deleteLetter, enter, correctWord, wrongLetters, setWrongLetters, correctLetters, setCorrectLetters, closeLetters, setCloseLetters, gameOver, setGameOver }}>
         <div className="game_content">
           <Gameboard/>
-          <Keyboard />
+          {gameOver.gameOver ? <GameOver/> : <Keyboard />}
         </div>
       </AppContext.Provider>
     </div>

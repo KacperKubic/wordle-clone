@@ -1,9 +1,14 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import SingleKey from "./SingleKey";
 
 const Keyboard = () => {
-    const { enter, deleteLetter, addLetter } = useContext(AppContext);
+    const { enter, deleteLetter, addLetter, wrongLetters, closeLetters, correctLetters, correctWord } = useContext(AppContext);
+    const [wrong, setWrong] = useState(false);
+    const [close, setClose] = useState(false);
+    const [correct, setCorrect] = useState(false);
+
+    console.log(correctWord)
 
     const lineOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const lineTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -43,18 +48,18 @@ const Keyboard = () => {
         <div className="keyboard" onKeyDown={handleKeyPress}>
             <div className="keyboard_line_one">
                 {lineOne.map((singleKey) => {
-                    return <SingleKey keyValue={singleKey} />
+                    return <SingleKey id={singleKey} keyValue={singleKey} wrong={wrongLetters.includes(singleKey)} correct={correctLetters.includes(singleKey)} close={closeLetters.includes(singleKey)}/>
                 })}
             </div>
             <div className="keyboard_line_two">
                 {lineTwo.map((singleKey) => {
-                    return <SingleKey keyValue={singleKey} />
+                    return <SingleKey id={singleKey} keyValue={singleKey}  wrong={wrongLetters.includes(singleKey)} correct={correctLetters.includes(singleKey)} close={closeLetters.includes(singleKey)}/>
                 })}
             </div>
             <div className="keyboard_line_three">
                 <SingleKey keyValue={"ENTER"} specialKey />
                 {lineThree.map((singleKey) => {
-                    return <SingleKey keyValue={singleKey} />
+                    return <SingleKey id={singleKey} keyValue={singleKey}  wrong={wrongLetters.includes(singleKey)} correct={correctLetters.includes(singleKey)} close={closeLetters.includes(singleKey)}/>
                 })}
                 <SingleKey keyValue={"DELETE"} specialKey/>
             </div>
