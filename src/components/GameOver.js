@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 
 const GameOver = () => {
-    const {gameOver, setGameOver, correctWord, currentAttempt} = useContext(AppContext);
+    const {gameOver, correctWord, currentAttempt} = useContext(AppContext);
 
     return ( 
         <div className="gameOver">

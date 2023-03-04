@@ -8,6 +8,7 @@ const Letter = ({ letterPosition, attemptNumber}) => {
     const close = !correct && letter !== "" && correctWord.toUpperCase().includes(letter)
     const letterState = currentAttempt.attempt > attemptNumber && (correct ? "correct" : close ? "close" : "wrong")
 
+    //On each guess (every guess causes currentAttempt.attempt to go +1) it checks if the letters are on correct possitions and adds them to different arrays based of the result
     useEffect(() => {
         if(letter !== "" && !correct && !close){
             setWrongLetters((previous) => [...previous, letter])

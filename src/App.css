@@ -3,6 +3,7 @@ body{
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  background-color: #121212;
 }
 
 .app{
@@ -64,7 +65,7 @@ nav h1{
   font-size: 30px;
 }
 
-.keyboard {
+.keyboard{
   width: 700px;
   height: 300px;
   margin-top: 60px;
@@ -108,7 +109,7 @@ nav h1{
 }
 
 #specialKey{
-  width: 100px;
+  width: 90px;
 }
 
 #correct{
@@ -121,4 +122,35 @@ nav h1{
 
 #wrong{
   background-color: #3a393c;
+}
+
+@media screen and (max-width:700px){
+  .app{
+    height: auto;
+  }
+
+  .gameboard{
+    width: 90%;
+    height: 370px;
+  }
+  
+  .letter{
+    height: 50px;
+  }
+
+  .keyboard{
+    width: 90%;
+    height: 400px;
+  }
+
+  .singleKey{
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  #specialKey{
+    width: 60px;
+    font-size: 18px;
+  }
 }

@@ -9,6 +9,7 @@ import { generateWordSet  } from './Data';
 export const AppContext = createContext();
 
 const App = () => {
+  //States that are then passed to app context
   const [gameboard, setGameboard] = useState(gameboardInitial);
   const [currentAttempt, setCurrentAttempt] = useState({attempt: 0, letterPosition: 0})
   const [wordSet, setWordSet] = useState(new Set())
@@ -18,6 +19,7 @@ const App = () => {
   const [gameOver, setGameOver] = useState({gameOver: false, win: false})
   const [correctWord, setCorrectWord] = useState("")
 
+  //Functions to add/delete letter and submit your anwser
   const addLetter = (keyValue) => {
     if(currentAttempt.letterPosition > 4 ) return;
       const newGameboardoard = [...gameboard]
@@ -58,6 +60,7 @@ const App = () => {
     }
   }
   
+  //Generate new word set (to check if word exist) and select correct word
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet)
@@ -74,6 +77,7 @@ const App = () => {
       <AppContext.Provider value={{ gameboard, setGameboard, currentAttempt, setCurrentAttempt, addLetter, deleteLetter, enter, correctWord, wrongLetters, setWrongLetters, correctLetters, setCorrectLetters, closeLetters, setCloseLetters, gameOver, setGameOver }}>
         <div className="game_content">
           <Gameboard/>
+          {/*ig gameOver is true display gameover component else display keyboard */}
           {gameOver.gameOver ? <GameOver/> : <Keyboard />}
         </div>
       </AppContext.Provider>
