@@ -75,11 +75,18 @@ const App = () => {
         <h1>Wordle</h1>
       </nav>
       <AppContext.Provider value={{ gameboard, setGameboard, currentAttempt, setCurrentAttempt, addLetter, deleteLetter, enter, correctWord, wrongLetters, setWrongLetters, correctLetters, setCorrectLetters, closeLetters, setCloseLetters, gameOver, setGameOver }}>
+      {/*If game over is true display gameover component*/}
+      {gameOver.gameOver ? 
+        <div className="game_over_content">
+          <Gameboard/>
+          <Keyboard />
+          <GameOver />
+        </div> : 
         <div className="game_content">
           <Gameboard/>
-          {/*ig gameOver is true display gameover component else display keyboard */}
-          {gameOver.gameOver ? <GameOver/> : <Keyboard />}
+          <Keyboard />
         </div>
+      }
       </AppContext.Provider>
     </div>
   );

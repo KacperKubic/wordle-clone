@@ -6,9 +6,13 @@ const GameOver = () => {
 
     return ( 
         <div className="gameOver">
-            <h3>{gameOver.win ? "You guessed the correct word!" : "You failed to guess the correct word"}</h3>
-            <h1>Correct anwser was: {correctWord}</h1>
-            {gameOver.win && (<h3>It took you {currentAttempt.attempt} attempts to guess the word</h3>)}
+            <div className="gameOver_content">
+                <div className="gameOver_content_text">
+                    <h1>{gameOver.win ? "You guessed the correct word!" : "You failed to guess the correct word"}</h1>
+                    <h2>Correct anwser was: {correctWord}</h2>
+                    {gameOver.win && (<h3>It took you {currentAttempt.attempt} attempts to guess the word</h3>)}
+                </div>
+            </div>
         </div>
      );
 }

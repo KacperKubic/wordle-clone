@@ -4,7 +4,7 @@ import SingleKey from "./SingleKey";
 import { MdOutlineBackspace } from 'react-icons/md'
 
 const Keyboard = () => {
-    const { enter, deleteLetter, addLetter, wrongLetters, closeLetters, correctLetters } = useContext(AppContext);
+    const { enter, deleteLetter, addLetter, wrongLetters, closeLetters, correctLetters, gameOver } = useContext(AppContext);
 
     //Array of letters in each keyboard row
     const lineOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -37,11 +37,15 @@ const Keyboard = () => {
     })
 
     useEffect(() => {
-        document.addEventListener("keydown", handleKeyPress)
-        return () => {
-            document.removeEventListener("keydown", handleKeyPress)
+        if(gameOver.gameOver){
+            return;
+        }else{
+            document.addEventListener("keydown", handleKeyPress)
+            return () => {
+                document.removeEventListener("keydown", handleKeyPress)
+            }
         }
-    }, [handleKeyPress])
+    }, [handleKeyPress, gameOver])
 
     return ( 
         <div className="keyboard" onKeyDown={handleKeyPress}>
