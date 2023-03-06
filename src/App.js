@@ -59,6 +59,9 @@ const App = () => {
       setGameOver({gameOver: true, win: false});
     }
   }
+
+  console.log(correctWord)
+  console.log(wordSet)
   
   //Generate new word set (to check if word exist) and select correct word
   useEffect(() => {

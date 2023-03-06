@@ -10,6 +10,7 @@ const Keyboard = () => {
     const lineOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const lineTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const lineThree = ["Z", "X", "C", "V", "B", "N", "M"];
+
     
     //Add event to each keyboard key to do something on press (either add/delate letter or submit anwser)
     const handleKeyPress = useCallback((event) => {
@@ -61,11 +62,11 @@ const Keyboard = () => {
                 })}
             </div>
             <div className="keyboard_line_three">
-                <SingleKey keyValue={"ENTER"} specialKey />
+                <SingleKey functionality="DELETE" keyValue={"ENTER"} specialKey />
                 {lineThree.map((singleKey) => {
                     return <SingleKey id={singleKey} keyValue={singleKey}  wrong={wrongLetters.includes(singleKey)} correct={correctLetters.includes(singleKey)} close={closeLetters.includes(singleKey)}/>
                 })}
-                <SingleKey keyValue={<MdOutlineBackspace/>} specialKey/>
+                <SingleKey functionality="DELETE" keyValue={<MdOutlineBackspace/>} specialKey/>
             </div>
         </div>
      );

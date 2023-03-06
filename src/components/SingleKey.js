@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
 
-const SingleKey = ({ keyValue, specialKey, correct, close, wrong }) => {
+const SingleKey = ({ keyValue, specialKey, correct, close, wrong, functionality }) => {
     const { addLetter, deleteLetter, enter } = useContext(AppContext);
 
     //On click add/delete letter or submit anwser
     const handleClick = () => {
-        if(keyValue === "ENTER"){
+        if(functionality === "ENTER"){
             enter();
-        }else if(keyValue === "DELETE"){
+        }else if(functionality === "DELETE"){
             deleteLetter();
         }else{
             addLetter(keyValue)
