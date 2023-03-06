@@ -66,8 +66,6 @@ const App = () => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet)
       setCorrectWord(words.todayWord)
-      console.log(correctWord)
-      console.log(wordSet)
     })
   }, [])
   

@@ -4,13 +4,15 @@ import SingleKey from "./SingleKey";
 import { MdOutlineBackspace } from 'react-icons/md'
 
 const Keyboard = () => {
-    const { enter, deleteLetter, addLetter, wrongLetters, closeLetters, correctLetters, gameOver } = useContext(AppContext);
+    const { enter, deleteLetter, addLetter, wrongLetters, closeLetters, correctLetters, gameOver, correctWord, wordSet } = useContext(AppContext);
 
     //Array of letters in each keyboard row
     const lineOne = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const lineTwo = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const lineThree = ["Z", "X", "C", "V", "B", "N", "M"];
 
+    console.log(correctWord)
+    console.log(wordSet)
     
     //Add event to each keyboard key to do something on press (either add/delate letter or submit anwser)
     const handleKeyPress = useCallback((event) => {
