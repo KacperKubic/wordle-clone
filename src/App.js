@@ -60,14 +60,14 @@ const App = () => {
     }
   }
 
-  console.log(correctWord)
-  console.log(wordSet)
   
   //Generate new word set (to check if word exist) and select correct word
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet)
       setCorrectWord(words.todayWord)
+      console.log(correctWord)
+      console.log(wordSet)
     })
   }, [])
   
