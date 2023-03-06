@@ -38,7 +38,6 @@ const App = () => {
   
   
   const enter = () => {
-    console.log(wordSet)
     if(currentAttempt.letterPosition <= 4) return;
     let currentWord = "";
     for (let i = 0; i < 5; i++){
