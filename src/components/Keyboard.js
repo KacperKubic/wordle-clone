@@ -61,7 +61,7 @@ const Keyboard = () => {
                 })}
             </div>
             <div className="keyboard_line_three">
-                <SingleKey functionality="DELETE" keyValue={"ENTER"} specialKey />
+                <SingleKey functionality="ENTER" keyValue={"ENTER"} specialKey />
                 {lineThree.map((singleKey) => {
                     return <SingleKey id={singleKey} keyValue={singleKey}  wrong={wrongLetters.includes(singleKey)} correct={correctLetters.includes(singleKey)} close={closeLetters.includes(singleKey)}/>
                 })}
